@@ -59,6 +59,8 @@
         <commons.text.version>1.4</commons.text.version>
         <commons.codec.version>1.10</commons.codec.version>
         <commons.beanutils.version>1.9.2</commons.beanutils.version>
+        <!--本地文件上传版本号管理-->
+        <fileupload.version>1.3.3</fileupload.version>
         <!--shiro版本号管理-->
         <shiro.version>1.3.2</shiro.version>
         <!--cat版本号管理-->
@@ -68,7 +70,7 @@
         <!--shiro权限控制版本号管理-->
         <shiro-redis.version>2.4.2.1-RELEASE</shiro-redis.version>
         <!--jetty版本号管理-->
-        <jetty.server.version>9.2.24.v20180105</jetty.server.version>
+        <jetty.server.version>9.3.24.v20180605</jetty.server.version>
         <!--netty-all版本号管理-->
         <netty.all.version>4.1.16.Final</netty.all.version>
         <!--jstl版本号管理-->
@@ -214,7 +216,7 @@
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
-                <version>1.3.1</version>
+                <version>${fileupload.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-net</groupId>
