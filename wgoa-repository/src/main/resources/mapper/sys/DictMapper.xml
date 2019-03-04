@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wgoa.repository.repo.sys.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.wgoa.repository.domain.sys.Dict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wgoa.repository.domain.sys.Dict" extends="BaseResultMap" >
+    <result column="remarks" property="remarks" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, data, type_code, sort, status, create_date, create_by, update_date, update_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    remarks
+  </sql>
+  <!--查询列表-->
+  <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    <!--改版MybatisPlus,此处传入条件sql-->
+    <if test="queryParams != null">
+      ${queryParams}
+    </if>
+  </select>
+  <!--查询单条数据-->
+  <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_dict
+    <!--可根据条件查询-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = 0
+      </otherwise>
+    </choose>
+  </select>
+  <!--删除(状态删除)-->
+  <delete id="delete" parameterType="java.util.Map" >
+    update sys_dict set status = 1
+    <!--可根据条件删除-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = 0
+      </otherwise>
+    </choose>
+  </delete>
+  <!--新增-->
+  <insert id="insert" parameterType="com.wgoa.repository.domain.sys.Dict" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="typeCode != null" >
+        type_code,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!--更新-->
+  <update id="update">
+    update sys_dict
+    <set >
+      <if test="t.name != null" >
+        name = #{t.name,jdbcType=VARCHAR},
+      </if>
+      <if test="t.data != null" >
+        data = #{t.data,jdbcType=VARCHAR},
+      </if>
+      <if test="t.typeCode != null" >
+        type_code = #{t.typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="t.sort != null" >
+        sort = #{t.sort,jdbcType=INTEGER},
+      </if>
+      <if test="t.status != null" >
+        status = #{t.status,jdbcType=INTEGER},
+      </if>
+      <if test="t.createDate != null" >
+        create_date = #{t.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="t.createBy != null" >
+        create_by = #{t.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="t.updateDate != null" >
+        update_date = #{t.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="t.updateBy != null" >
+        update_by = #{t.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="t.remarks != null" >
+        remarks = #{t.remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <!--可根据条件-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = #{t.id,jdbcType=INTEGER}
+      </otherwise>
+    </choose>
+  </update>
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.repository.repo.${className}Mapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="${package}.repository.domain.${className}" id="${classname}Map">
+#foreach($column in $columns)
+        <result property="${column.attrname}" column="${column.columnName}"/>
+#end
+    </resultMap>
+
+    <!--sql查询返回字段（可定义其他字段）-->
+    <sql id="Base_Column_List" >
+        #set($flag = "")
+        #foreach($column in $columns)
+          $!flag
+            ${column.columnName}#set($flag = ",")
+        #end
+    </sql>
+
+    <!--查询列表-->
+    <select id="list" resultMap="${classname}Map" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from ${tableName}
+        <!--改版MybatisPlus,此处传入条件sql-->
+        <if test="queryParams != null and queryParams != ''">
+            ${queryParams}
+        </if>
+    </select>
+
+    <!--查询单条数据-->
+    <select id="selectOne" resultMap="${classname}Map" parameterType="java.util.Map" >
+        select
+        <include refid="Base_Column_List" />
+        from ${tableName}
+        <!--可根据条件查询-->
+        <choose>
+            <!--改版MybatisPlus,此处传入条件sql-->
+            <when test="queryParams != null and queryParams != ''">
+                ${queryParams}
+            </when>
+            <otherwise>
+                where id = 0
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--删除(状态删除)-->
+    <update id="delete" parameterType="java.util.Map">
+        update ${tableName} set status = 1
+        <!--可根据条件删除-->
+        <choose>
+            <!--改版MybatisPlus,此处传入条件sql-->
+            <when test="queryParams != null and queryParams != ''">
+                ${queryParams}
+            </when>
+            <otherwise>
+                where id = 0
+            </otherwise>
+        </choose>
+    </update>
+
+    <!--新增-->
+    <insert id="insert" parameterType="com.wgoa.repository.domain.${classname}" useGeneratedKeys="true" keyProperty="id">
+        insert into ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            #foreach($column in $columns)
+            <if test="${column.attrname} != null" >
+                ${column.columnName},
+            </if>
+            #end
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #foreach($column in $columns)
+            <if test="${column.attrname} != null" >
+                #{${column.attrname}},
+            </if>
+            #end
+        </trim>
+    </insert>
+
+    <!--更新-->
+    <update id="update">
+        update ${tableName}
+        <set >
+            #foreach($column in $columns)
+            <if test="t.${column.attrname} != null" >
+                ${column.columnName} = #{t.${column.attrname}},
+            </if>
+            #end
+        </set>
+        <!--可根据条件-->
+        <choose>
+            <!--改版MybatisPlus,此处传入条件sql-->
+            <when test="queryParams != null and queryParams != ''">
+                ${queryParams}
+            </when>
+            <otherwise>
+                where id = #{t.id}
+            </otherwise>
+        </choose>
+    </update>
+</mapper>

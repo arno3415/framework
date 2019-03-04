@@ -1,0 +1,20 @@
+package ${package}.business.service.impl;
+
+import ${package}.repository.domain.${className};
+import ${package}.repository.repo.${className}Mapper;
+import ${package}.business.service.intf.${className}Service;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ${package}.business.base.BaseServiceImpl;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ * @Version 1.0
+ */
+@Service
+@Transactional(rollbackFor = { RuntimeException.class, Exception.class })
+public class ${className}Service extends BaseServiceImpl<${className}Mapper,${className}> implements ${className}Service {
+}

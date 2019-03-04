@@ -1,0 +1,16 @@
+# 忽略提交文件
+*.iml
+.idea
+.idea/workspace.xml
+.idea/compiler.xml
+target/
+LOG_PATH_IS_UNDEFINED/
+/bin/
+/log/error/*.log
+/log/*
+/src/main/resources/application-dev.yml
+/src/main/resources/application.yml
+/pom.xml
+pom.xml
+/src/main/resources/application-prod.yml
+/src/main/resources/generatorConfig.xml

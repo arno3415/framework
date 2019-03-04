@@ -1,0 +1,23 @@
+package ${package}.manager.controller;
+
+import ${package}.biz.${className}Biz;
+import ${package}.business.service.intf.${className}Service
+import ${package}.entity.${className};
+import com.wgoa.manager.base.BaseController;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ * @Version 1.0
+ */
+@Api(value = "${comments}")
+@RestController
+@RequestMapping("${secondModuleName}")
+public class ${className}Controller extends BaseController {
+
+}

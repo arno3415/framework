@@ -1,0 +1,18 @@
+package ${package}.repository.repo;
+
+import ${package}.repository.domain.${className};
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ * @Version 1.0
+ */
+@Mapper
+@Component
+public interface ${className}Mapper extends MyBaseMapper<${className}> {
+	
+}

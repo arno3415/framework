@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wgoa.repository.repo.sys.UserDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.wgoa.repository.domain.sys.UserDetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="attendance_number" property="attendanceNumber" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="job_number" property="jobNumber" jdbcType="VARCHAR" />
+    <result column="nationality_id" property="nationalityId" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="department_title_id" property="departmentTitleId" jdbcType="INTEGER" />
+    <result column="entry_date" property="entryDate" jdbcType="VARCHAR" />
+    <result column="positive_date" property="positiveDate" jdbcType="VARCHAR" />
+    <result column="recruitment_channel" property="recruitmentChannel" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wgoa.repository.domain.sys.UserDetails" extends="BaseResultMap" >
+    <result column="remarks" property="remarks" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, department_id, attendance_number, sex, job_number, nationality_id, birthday, 
+    department_title_id, entry_date, positive_date, recruitment_channel, create_date, 
+    create_by, update_date, update_by, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    remarks
+  </sql>
+  <!--查询列表-->
+  <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user_details
+    <!--改版MybatisPlus,此处传入条件sql-->
+    <if test="queryParams != null">
+      ${queryParams}
+    </if>
+  </select>
+  <!--查询单条数据-->
+  <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_user_details
+    <!--可根据条件查询-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = 0
+      </otherwise>
+    </choose>
+  </select>
+  <!--删除(状态删除)-->
+  <update id="delete" parameterType="java.util.Map">
+    update sys_user_details set status = 1
+    <!--可根据条件删除-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = 0
+      </otherwise>
+    </choose>
+  </update>
+  <!--新增-->
+  <insert id="insert" parameterType="com.wgoa.repository.domain.sys.UserDetails" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_user_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="attendanceNumber != null" >
+        attendance_number,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="jobNumber != null" >
+        job_number,
+      </if>
+      <if test="nationalityId != null" >
+        nationality_id,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="departmentTitleId != null" >
+        department_title_id,
+      </if>
+      <if test="entryDate != null" >
+        entry_date,
+      </if>
+      <if test="positiveDate != null" >
+        positive_date,
+      </if>
+      <if test="recruitmentChannel != null" >
+        recruitment_channel,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceNumber != null" >
+        #{attendanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="jobNumber != null" >
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityId != null" >
+        #{nationalityId,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentTitleId != null" >
+        #{departmentTitleId,jdbcType=INTEGER},
+      </if>
+      <if test="entryDate != null" >
+        #{entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="positiveDate != null" >
+        #{positiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitmentChannel != null" >
+        #{recruitmentChannel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!--更新-->
+  <update id="update">
+    update sys_user_details
+    <set >
+      <if test="t.departmentId != null" >
+        department_id = #{t.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="t.attendanceNumber != null" >
+        attendance_number = #{t.attendanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="t.sex != null" >
+        sex = #{t.sex,jdbcType=INTEGER},
+      </if>
+      <if test="t.jobNumber != null" >
+        job_number = #{t.jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="t.nationalityId != null" >
+        nationality_id = #{t.nationalityId,jdbcType=INTEGER},
+      </if>
+      <if test="t.birthday != null" >
+        birthday = #{t.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="t.departmentTitleId != null" >
+        department_title_id = #{t.departmentTitleId,jdbcType=INTEGER},
+      </if>
+      <if test="t.entryDate != null" >
+        entry_date = #{t.entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="t.positiveDate != null" >
+        positive_date = #{t.positiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="t.recruitmentChannel != null" >
+        recruitment_channel = #{t.recruitmentChannel,jdbcType=INTEGER},
+      </if>
+      <if test="t.createDate != null" >
+        create_date = #{t.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="t.createBy != null" >
+        create_by = #{t.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="t.updateDate != null" >
+        update_date = #{t.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="t.updateBy != null" >
+        update_by = #{t.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="t.status != null" >
+        status = #{t.status,jdbcType=INTEGER},
+      </if>
+      <if test="t.remarks != null" >
+        remarks = #{t.remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <!--可根据条件-->
+    <choose>
+      <!--改版MybatisPlus,此处传入条件sql-->
+      <when test="queryParams != null and queryParams != ''">
+        ${queryParams}
+      </when>
+      <otherwise>
+        where id = #{t.id,jdbcType=INTEGER}
+      </otherwise>
+    </choose>
+  </update>
+</mapper>

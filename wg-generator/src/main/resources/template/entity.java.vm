@@ -1,0 +1,33 @@
+package ${package}.repository.domain;
+
+import com.wgoa.repository.base.DataEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ * @Version 1.0
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${className} extends DataEntity<${className}> {
+	private static final long serialVersionUID = 1L;
+	
+#foreach ($column in $columns)
+	#if($column.columnName == $pk.columnName)
+
+	#else
+    /**
+     * 设置：${column.comments}
+     */
+    private $column.attrType $column.attrname;
+	#end
+
+#end
+}

@@ -1,0 +1,38 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+*.iws
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+##忽略提交文件
+*.iml
+.idea
+target/
+LOG_PATH_IS_UNDEFINED/
+/bin/
+/log/error/*.log
+/log/*
+/src/main/resources/application-dev.yml
+/src/main/resources/application.yml
+/pom.xml
+pom.xml
+/src/main/resources/application-prod.yml
+/src/main/resources/generatorConfig.xml

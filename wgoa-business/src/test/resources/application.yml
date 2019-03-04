@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+druid:
+    type: com.alibaba.druid.pool.DruidDataSource
+    readSize : 2
+    master:
+        url: jdbc:mysql://192.168.50.54:3307/wgoa_master?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: mysql
+        password: oa123456
+        initial-size: 5
+        min-idle: 1
+        max-active: 100
+        test-on-borrow: true
+    slave:
+        url: jdbc:mysql://192.168.50.54:3307/wgoa_slave?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: mysql
+        password: oa123456
+        initial-size: 5
+        min-idle: 1
+        max-active: 100
+        test-on-borrow: true
+    slave2:
+        url: jdbc:mysql://192.168.50.54:3307/wgoa_slave?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: mysql
+        password: oa123456
+        initial-size: 5
+        min-idle: 1
+        max-active: 100
+        test-on-borrow: true
+
+## 该配置节点为独立的节点，将这个配置放在spring的节点下，导致配置无法被识别(已在config文件中配置，此处可以注释)
+#mybatis:
+#  mapper-locations: classpath*:/mapper/*/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+#  type-aliases-package: com.wgoa.repository.domain*  # 注意：对应实体类的路径
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    pageSizeZero: false
+    rowBoundsWithCount: true
+
+#配置日志
+logging:
+  #配置日志文件路径
+  path: d:\log
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    com.wgoa.repository.repo: DEBUG   #打印sql  开发与测试环境

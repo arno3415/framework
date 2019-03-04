@@ -1,0 +1,17 @@
+package ${package}.business.service.intf;
+
+import org.springframework.stereotype.Service;
+
+import ${package}.repository.domain.${className};
+import com.wgoa.business.base.BaseService;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ * @Version 1.0
+ */
+public interface ${className}Service extends BaseService<${className}> {
+
+}
