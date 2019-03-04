@@ -31,8 +31,4 @@ LOG_PATH_IS_UNDEFINED/
 /log/error/*.log
 /log/*
 /src/main/resources/application-dev.yml
-/src/main/resources/application.yml
-/pom.xml
-pom.xml
 /src/main/resources/application-prod.yml
-/src/main/resources/generatorConfig.xml

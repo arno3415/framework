@@ -1,0 +1,81 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  session:
+    timeout: 100000
+  ssl:
+    key-store: keystore
+    key-password: 123456
+    key-alias: springboot
+  context-path: /
+
+#数据库连接池
+druid:
+    type: com.alibaba.druid.pool.DruidDataSource
+    readSize : 2
+    master:
+        url: jdbc:mysql://123.56.124.191/demo?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: gdedu.tv
+        initial-size: 5
+        min-idle: 1
+        max-active: 100
+        test-on-borrow: true
+    slave:
+        url: jdbc:mysql://123.56.124.191/edu_base?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: gdedu.tv
+        initial-size: 5
+        min-idle: 1
+        max-active: 100
+        test-on-borrow: true
+    slave2:
+            url: jdbc:mysql://123.56.124.191/edu_base?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+            driver-class-name: com.mysql.jdbc.Driver
+            username: root
+            password: gdedu.tv
+            initial-size: 5
+            min-idle: 1
+            max-active: 100
+            test-on-borrow: true
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.hellored.repository.repo  # 注意：对应实体类的路径
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+#配置日志
+logging:
+  #配置日志文件路径
+  path: d:\log
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+
+#spring配置
+spring:
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
+  thymeleaf:
+    cache: false
+    encoding: utf-8
+    mode: HTML5
+  #热部署dev、test
+  profiles:
+    active: local
+  resources:
+    static-locations: /static
+    cache-period: 0

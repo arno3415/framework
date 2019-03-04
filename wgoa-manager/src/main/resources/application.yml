@@ -1,0 +1,42 @@
+server:
+  port: 8088
+
+#spring配置
+spring:
+  #热部署dev、test
+  #profiles:
+    #active: dev
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
+  #网络请求配置
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  thymeleaf:
+    cache: false
+    encoding: utf-8
+    mode: HTML5
+  resources:
+    static-locations: /static
+    cache-period: 0
+
+## 该配置节点为独立的节点，将这个配置放在spring的节点下，导致配置无法被识别(已在config文件中配置，此处可以注释)
+mybatis:
+  mapper-locations: classpath*:/mapper/**/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.wgoa.repository.domain*  # 注意：对应实体类的路径
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    pageSizeZero: false
+    rowBoundsWithCount: true

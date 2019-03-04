@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.wgoa</groupId>
+	<artifactId>wgoa-quartz</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>wgoa-quartz</name>
+	<description>wgoa-quartz project for Spring Boot</description>
+
+	<parent>
+		<groupId>com.wgoa</groupId>
+		<artifactId>wgoa-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--项目依赖包-->
+		<dependency>
+			<groupId>com.wgoa</groupId>
+			<artifactId>wgoa-repository</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wgoa</groupId>
+			<artifactId>wgoa-business</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wgoa</groupId>
+			<artifactId>wgoa-utils</artifactId>
+		</dependency>
+
+		<!--xxl-job任务调度-->
+		<dependency>
+			<groupId>com.xuxueli</groupId>
+			<artifactId>xxl-job-core</artifactId>
+		</dependency>
+		<!--jetty-->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-io</artifactId>
+		</dependency>
+		<!--netty-->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+		</dependency>
+
+		<!--启动时启动内置tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
