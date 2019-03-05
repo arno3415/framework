@@ -58,8 +58,8 @@ WGoa2.0
         </dependency>
 11. [apollo](#7分布式配置文件管理)分布式配置文件(wgoa-manager)
 12. [xxl-job](#6分布式调度任务说明)定时任务调度(wgoa-quartz)
-13. [CAT监控](#5cat监控使用说明)(wgoa-manager,wgoa-repository,wgoa-business)
-14. [SkyWalking监控](#8skywalking监控)
+13. [CAT监控](#5cat监控使用说明)(wgoa-manager,wgoa-repository,wgoa-business)(代码侵入)
+14. [SkyWalking监控](#8skywalking监控)(字节码注入，链路追踪，非代码侵入)
  
 ## 4.代码管理使用说明
  - master主分支、生产分支。
