@@ -19,7 +19,7 @@ WGoa2.0
 5. wgoa-redis
     > redis缓存，常用字典数据、用户登录状态数据
 6. wgoa-upload
-    > 文件上传，上传各种文件图片至FTP服务器
+    > 文件上传
 7. wgoa-quartz
     > 定时任务，定期执行各种任务
 8. wgoa-manager
@@ -46,20 +46,20 @@ WGoa2.0
         运行后演示地址：(http://xxx/swagger-ui.html)
         
     </dependency>
-9. 文件上传、下载（FTP） (wgoa-upload)
-10. [CAT监控](#5cat监控使用说明)(wgoa-manager,wgoa-repository,wgoa-business)
-11. 重写MybatisPlus的EntityWarpper，利用MyEntityWarpper进行sql条件语句封装
-    <dependency>
-        
-        MyEntityWrapper<T> myEntityWrapper = new MyEntityWrapper<>();
-        myEntityWrapper.eq("id",id);
-        myEntityWrapper.like("name",id);
-        myEntityWrapper.or("type",type);
+9. FTP、七牛、阿里云、腾讯云文件上传 (wgoa-upload)
+10. 重写MybatisPlus的EntityWarpper，利用MyEntityWarpper进行sql条件语句封装
+        <dependency>
             
-    </dependency>
+            MyEntityWrapper<T> myEntityWrapper = new MyEntityWrapper<>();
+            myEntityWrapper.eq("id",id);
+            myEntityWrapper.like("name",id);
+            myEntityWrapper.or("type",type);
+                
+        </dependency>
+11. [apollo](#7分布式配置文件管理)分布式配置文件(wgoa-manager)
 12. [xxl-job](#6分布式调度任务说明)定时任务调度(wgoa-quartz)
-13. [apollo](#7分布式配置文件管理)分布式配置文件(wgoa-manager)
-14. [SkyWalking](#8skywalking监控)监控
+13. [CAT监控](#5cat监控使用说明)(wgoa-manager,wgoa-repository,wgoa-business)
+14. [SkyWalking监控](#8skywalking监控)
  
 ## 4.代码管理使用说明
  - master主分支、生产分支。
@@ -67,11 +67,11 @@ WGoa2.0
  - dev_xxx个人分支。
 
 1. 建立个人分支，以dev_命名方式
-2. 代码拉取  ==》 develop 
-3. 代码提交  ==》 dev_xxx
-4. 个人代码合并  ==》 dev_xxx 合并至 develop
+2. 代码拉取  == develop 
+3. 代码提交  == dev_xxx
+4. 个人代码合并  == dev_xxx 合并至 develop
 5. 测试develop
-6. 测试通过合并  ==》 develop 合并至 master （管理员权限）
+6. 测试通过合并  == develop 合并至 master （管理员权限）
 
 ## 5.CAT监控使用说明
 ##### CAT服务器安装 JDK版本1.7、1.8
@@ -216,7 +216,7 @@ WGoa2.0
 - git config --global user.name "Arno"
 - git config --global user.email "arno9967@google.com"
 - git init
-- git remote add origin git@git.6cc1.com:wgoa2.0/wgoa.git
+- git remote add origin url
 - git add .
 - git commit -m "Initial commit"
 - git push -u origin master

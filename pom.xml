@@ -59,8 +59,11 @@
         <commons.text.version>1.4</commons.text.version>
         <commons.codec.version>1.10</commons.codec.version>
         <commons.beanutils.version>1.9.2</commons.beanutils.version>
-        <!--本地文件上传版本号管理-->
+        <!--文件上传版本号管理-->
         <fileupload.version>1.3.3</fileupload.version>
+        <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
+        <aliyun.oss.version>2.5.0</aliyun.oss.version>
+        <qcloud.cos.version>4.4</qcloud.cos.version>
         <!--shiro版本号管理-->
         <shiro.version>1.3.2</shiro.version>
         <!--cat版本号管理-->
@@ -222,6 +225,27 @@
                 <groupId>commons-net</groupId>
                 <artifactId>commons-net</artifactId>
                 <version>${commons.net.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qiniu</groupId>
+                <artifactId>qiniu-java-sdk</artifactId>
+                <version>${qiniu.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun.oss.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qcloud</groupId>
+                <artifactId>cos_api</artifactId>
+                <version>${qcloud.cos.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!--Cat监控客户端-->
