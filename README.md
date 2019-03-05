@@ -48,14 +48,12 @@ WGoa2.0
     </dependency>
 9. FTP、七牛、阿里云、腾讯云文件上传 (wgoa-upload)
 10. 重写MybatisPlus的EntityWarpper，利用MyEntityWarpper进行sql条件语句封装
-        <dependency>
             
-            MyEntityWrapper<T> myEntityWrapper = new MyEntityWrapper<>();
-            myEntityWrapper.eq("id",id);
-            myEntityWrapper.like("name",id);
-            myEntityWrapper.or("type",type);
+        MyEntityWrapper<T> myEntityWrapper = new MyEntityWrapper<>();
+        myEntityWrapper.eq("id",id);
+        myEntityWrapper.like("name",id);
+        myEntityWrapper.or("type",type);
                 
-        </dependency>
 11. [apollo](#7分布式配置文件管理)分布式配置文件(wgoa-manager)
 12. [xxl-job](#6分布式调度任务说明)定时任务调度(wgoa-quartz)
 13. [CAT监控](#5cat监控使用说明)(wgoa-manager,wgoa-repository,wgoa-business)(代码侵入)
